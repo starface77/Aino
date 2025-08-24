@@ -1,0 +1,77 @@
+# AION .gitignore
+
+# Environment variables
+.env
+*.env
+
+# API Keys and secrets
+api_keys.json
+secrets.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.json.bak
+aion_log.json
+ai_analysis_log.json
+monitoring_data.json
+test_results.json
+fast_stats.json
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node modules (if any)
+node_modules/
+
+# Large data files
+raw-data/
+*.zip
+*.tar.gz
+
+# Generated files
+templates/*.html.bak
+*.pyc

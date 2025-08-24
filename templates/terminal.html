@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AION Terminal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Courier New', monospace; background: #000; color: #00ff00; }
+        .terminal { padding: 20px; height: 100vh; overflow-y: auto; }
+        .header { color: #00ff88; margin-bottom: 20px; }
+        .input-line { display: flex; margin-bottom: 10px; }
+        .prompt { color: #00ff88; margin-right: 10px; }
+        #command-input { background: transparent; border: none; color: #00ff00; font-family: inherit; font-size: inherit; outline: none; flex: 1; }
+        .output { margin-bottom: 15px; white-space: pre-wrap; }
+        .error { color: #ff4444; }
+        .success { color: #44ff44; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="header">
+            <h2>⚡ AION Terminal Interface</h2>
+            <p>Введите команды AION (без 'python aion.py')</p>
+            <p>Примеры: status, analyze, ai --action analyze, fix</p>
+            <hr>
+        </div>
+        
+        <div id="output"></div>
+        
+        <div class="input-line">
+            <span class="prompt">AION></span>
+            <input type="text" id="command-input" autofocus>
+        </div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        const input = document.getElementById('command-input');
+        
+        // Обработка команд
+        input.addEventListener('keypress', async function(e) {
+            if (e.key === 'Enter') {
+                const command = input.value.trim();
+                if (!command) return;
+                
+                // Показываем команду
+                addOutput(`AION> ${command}`, 'command');
+                input.value = '';
+                
+                try {
+                    const response = await fetch('/api/terminal', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ command })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.output) {
+                        addOutput(data.output, 'success');
+                    }
+                    
+                    if (data.error) {
+                        addOutput(data.error, 'error');
+                    }
+                    
+                } catch (error) {
+                    addOutput('Ошибка выполнения команды: ' + error.message, 'error');
+                }
+            }
+        });
+        
+        function addOutput(text, type = '') {
+            const div = document.createElement('div');
+            div.className = `output ${type}`;
+            div.textContent = text;
+            output.appendChild(div);
+            
+            // Прокрутка вниз
+            div.scrollIntoView();
+        }
+        
+        // Начальное сообщение
+        addOutput('Terminal ready. Type commands...', 'success');
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+# AION Configuration File
+# Advanced Intelligence & Optimization Network
+
+# Application settings
+app:
+  name: "AION"
+  version: "2024.1.0"
+  environment: "development"  # development, staging, production
+  debug: true
+  host: "0.0.0.0"
+  port: 8000
+
+# API settings
+api:
+  title: "AION API"
+  description: "Advanced Intelligence & Optimization Network API"
+  version: "1.0.0"
+  docs_url: "/docs"
+  redoc_url: "/redoc"
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:1420"
+    - "http://127.0.0.1:3000"
+    - "http://127.0.0.1:1420"
+
+# AI Model settings
+ai:
+  model:
+    name: "google/gemma-3-27b-instruct/bf-16"
+    provider: "inference.net"
+    api_key: "YOUR_INFERENCE_API_KEY_HERE"
+    base_url: "https://api.inference.net/v1"
+    max_tokens: 2000
+    temperature: 0.7
+    timeout: 30
+
+# GitHub integration
+github:
+  enabled: true
+  api_url: "https://api.github.com"
+  token: ""  # Set via environment variable GITHUB_TOKEN
+  rate_limit: 5000
+  cache_ttl: 3600
+
+# Database settings
+database:
+  url: "sqlite:///./aion.db"
+  echo: false
+  pool_size: 10
+  max_overflow: 20
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/aion.log"
+  max_size: "10MB"
+  backup_count: 5
+
+# Auto-improvement settings
+auto_improvement:
+  enabled: true
+  interval: 3600  # seconds
+  max_files_per_cycle: 10
+  quality_threshold: 80
+  backup_enabled: true
+
+# GUI settings
+gui:
+  enabled: true
+  port: 1420
+  host: "localhost"
+  auto_open: true
+
+# Analytics settings
+analytics:
+  enabled: true
+  storage_path: "data/analytics"
+  max_history: 1000
+  export_formats: ["json", "csv", "excel"]
+
+# Security
+security:
+  secret_key: "your-secret-key-here"  # Change in production
+  algorithm: "HS256"
+  access_token_expire_minutes: 30
+  refresh_token_expire_days: 7
+
+# Monitoring
+monitoring:
+  enabled: true
+  metrics_port: 9090
+  health_check_interval: 60
+  alert_threshold: 0.8
