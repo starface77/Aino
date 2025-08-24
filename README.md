@@ -329,14 +329,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [psutil](https://github.com/giampaolo/psutil) — system monitoring
 - All project contributors
 
-## 📞 Contact
-
-- **GitHub Issues** — [create issue](https://github.com/starface77/aion/issues)
-- **Email** — your.email@example.com
-- **Telegram** — @yourusername
-
----
-
 **AION** — making code analysis and improvement simple and automated! 🚀
 
 ## 🌍 Language Versions
